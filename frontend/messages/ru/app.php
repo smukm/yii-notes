@@ -12,4 +12,6 @@ return [
     'Password' => 'Пароль',
     'Remember Me' => 'Запомнить',
     'Unable to authorize try again' => 'Ошибка авторизации, попробуйте еще раз',
+    'Edit' => 'Редактировать',
+    'Delete' => 'Удалить',
 ];

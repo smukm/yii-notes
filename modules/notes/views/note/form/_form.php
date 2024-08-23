@@ -17,21 +17,24 @@ use yii\widgets\ActiveForm;
 ?>
 
 
-
-<?= $form->field($noteForm, 'title')->textInput(['maxlength' => true]) ?>
-
-<?= $form->field($noteForm, 'content')->textarea(['rows' => 6]) ?>
-<?= $form->field($noteForm, 'tags')->widget(Select2::class, [
-    'data' => Tag::getList(),
-    'options' => ['placeholder' => 'Выберите теги ...', 'multiple' => true],
-    'theme' => Select2::THEME_BOOTSTRAP,
-    'pluginOptions' => [
-        'tags' => true,
-        'tokenSeparators' => [',', ' '],
-        'maximumInputLength' => 50
-    ],
-])->label('Теги');
-?>
+<div class="row mb-3">
+    <?= $form->field($noteForm, 'title')->textInput(['maxlength' => true]) ?>
+</div>
+<div class="row mb-3">
+    <?= $form->field($noteForm, 'content')->textarea(['rows' => 6]) ?>
+</div>
+<div class="row mb-3">
+    <?= $form->field($noteForm, 'tags')->widget(Select2::class, [
+        'data' => Tag::getList(),
+        'options' => ['placeholder' => 'Выберите теги ...', 'multiple' => true],
+        'theme' => Select2::THEME_BOOTSTRAP,
+        'pluginOptions' => [
+            'tags' => true,
+            'tokenSeparators' => [',', ' '],
+            'maximumInputLength' => 50
+        ],
+    ]) ?>
+</div>
 
 
 

@@ -13,7 +13,6 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property int $tag_id
  * @property int $taggable_id
- * @property string $taggable_type
  */
 class Taggable extends ActiveRecord
 {
@@ -31,7 +30,7 @@ class Taggable extends ActiveRecord
     public function rules(): array
     {
         return [
-            [['tag_id', 'taggable_id', 'taggable_type'], 'required'],
+            [['tag_id', 'taggable_id'], 'required'],
             [['tag_id', 'taggable_id'], 'integer'],
         ];
     }

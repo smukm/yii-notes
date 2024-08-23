@@ -9,11 +9,11 @@ use modules\notes\forms\NoteForm;
 use modules\notes\models\Note;
 use Throwable;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\db\ActiveRecord;
 use yii\db\Exception;
 use yii\db\StaleObjectException;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 
 class NoteService
@@ -52,6 +52,10 @@ class NoteService
         return $note;
     }
 
+    /**
+     * @throws Exception
+     * @throws NotFoundHttpException
+     */
     public function editNote(NoteForm $noteForm, int $note_id): Note
     {
         $note = $this->findNote($note_id);
@@ -81,6 +85,9 @@ class NoteService
     }
 
 
+    /**
+     * @throws InvalidConfigException
+     */
     public function getTags(Note $note): array
     {
         return ArrayHelper::map($note->getTags()->all(), 'title', 'title');

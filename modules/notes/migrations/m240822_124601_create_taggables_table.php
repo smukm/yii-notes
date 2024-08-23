@@ -18,9 +18,27 @@ class m240822_124601_create_taggables_table extends Migration
                 ->notNull(),
             'taggable_id' => $this->integer()
                 ->notNull(),
-            'taggable_type' => $this->string(255)
-                ->notNull(),
         ]);
+
+        $this->addForeignKey(
+            'fk_taggables_tag_id',
+            '{{%taggables}}',
+            'tag_id',
+            '{{%tags}}',
+            'id',
+            'cascade',
+            'cascade'
+        );
+
+        $this->addForeignKey(
+            'fk_taggables_taggable_id',
+            '{{%taggables}}',
+            'taggable_id',
+            '{{%notes}}',
+            'id',
+            'cascade',
+            'cascade'
+        );
     }
 
     /**

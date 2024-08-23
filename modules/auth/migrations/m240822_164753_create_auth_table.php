@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use yii\db\Migration;
 
 /**
@@ -10,7 +12,7 @@ class m240822_164753_create_auth_table extends Migration
     /**
      * {@inheritdoc}
      */
-    public function safeUp()
+    public function safeUp(): void
     {
         $this->createTable('{{%auth}}', [
             'id' => $this->primaryKey(),
@@ -33,7 +35,7 @@ class m240822_164753_create_auth_table extends Migration
     /**
      * {@inheritdoc}
      */
-    public function safeDown()
+    public function safeDown(): void
     {
         if(YII_ENV === 'dev') {
             $this->dropTable('{{%auth}}');

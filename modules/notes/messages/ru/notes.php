@@ -11,6 +11,7 @@ return [
     'Update Note: {title}' => 'Обновить заметку: {title}',
     'Title' => 'Заголовок',
     'Content' => 'Содержание',
-    'Create At' => 'Дата создания',
+    'Created At' => 'Дата создания',
+    'Updated At' => 'Дата изменения',
     'Tags' => 'Теги',
 ];

@@ -79,6 +79,7 @@ class AuthHandler
     }
 
     /**
+     * Sign up a new user and link it to social network
      * @throws Exception
      * @throws \yii\base\Exception
      */

@@ -3,7 +3,6 @@
 namespace modules\notes\controllers;
 
 use modules\notes\forms\NoteForm;
-use modules\notes\models\Note;
 use modules\notes\models\NoteSearch;
 use modules\notes\services\NoteService;
 use Throwable;
@@ -37,7 +36,7 @@ class NoteController extends Controller
     /**
      * @inheritDoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return array_merge(
             parent::behaviors(),
@@ -95,7 +94,6 @@ class NoteController extends Controller
         ]);
     }
 
-
     public function actionStore(): Response|string|array
     {
         $noteForm = new NoteForm();
@@ -139,7 +137,6 @@ class NoteController extends Controller
         ]);
     }
 
-
     /**
      * @throws NotFoundHttpException
      */
@@ -155,11 +152,7 @@ class NoteController extends Controller
         try {
             if($noteForm->load($this->request->post()) && $noteForm->validate()) {
 
-
-
                 $note = $this->noteService->editNote($noteForm, $id);
-
-
 
                 return $this->redirect(['view', 'id' => $note->id]);
             }
@@ -174,7 +167,6 @@ class NoteController extends Controller
         ]);
     }
 
-
     public function actionDelete($id): Response
     {
         try {
@@ -185,7 +177,6 @@ class NoteController extends Controller
 
         return $this->redirect(['index']);
     }
-
 
     private function formAjaxValidate(NoteForm $noteForm): array
     {

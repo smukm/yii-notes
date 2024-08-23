@@ -27,14 +27,6 @@ class NoteForm extends Model
         $this->id = $id;
     }
 
-    public function beforeValidate()
-    {
-        if($this->tags === '') {
-            $this->tags = [];
-        }
-        return parent::beforeValidate();
-    }
-
     public function rules(): array
     {
         return [
@@ -47,6 +39,15 @@ class NoteForm extends Model
                 'targetAttribute' => ['user_id' => 'id']
             ],
             [['tags'], 'safe'],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'title' => Yii::t('notes', 'Title'),
+            'content' => Yii::t('notes', 'Content'),
+            'tags' => Yii::t('notes', 'Tags'),
         ];
     }
 }
