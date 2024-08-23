@@ -44,7 +44,7 @@ class NoteSearch extends Note
      */
     public function search(array $params): ActiveDataProvider
     {
-        $query = Note::find();
+        $query = Note::find()->with('tags');
 
         // add conditions that should always apply here
 
