@@ -35,7 +35,7 @@ class AuthHandler
     {
         $attributes = $this->client->getUserAttributes();
         $email = ArrayHelper::getValue($attributes, 'email');
-        $id = ArrayHelper::getValue($attributes, 'id');
+        $id = (string) ArrayHelper::getValue($attributes, 'id');
         $nickname = ArrayHelper::getValue($attributes, 'login', $email);
 
         if(is_null($email) || is_null($id)) {
@@ -122,7 +122,7 @@ class AuthHandler
 
     private function login(User $user): void
     {
-        Yii::$app->user->login($user, Yii::$app->params['user.rememberMeDuration']);
+        Yii::$app->user->login($user);
     }
 
     /**
