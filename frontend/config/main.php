@@ -54,8 +54,8 @@ return [
             'clients' => [
                 'vkontakte' => [
                     'class' => VKontakte::class,
-                    'clientId' => '4523520',
-                    'clientSecret' => 'sbLI2mlq0NvScoNTm1p2',
+                    'clientId' => 'xxx',
+                    'clientSecret' => 'xxx',
                     'scope' => 'email',
                 ],
             ],
