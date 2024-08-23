@@ -51,8 +51,6 @@ class NoteController extends Controller
                             'store' => ['POST'],
                             'update' => ['PUT'],
                             'delete' => ['POST'],
-                            'show-modal' => ['GET'],
-                            'subscribe' => ['POST'],
                         ],
                     ],
                 ],

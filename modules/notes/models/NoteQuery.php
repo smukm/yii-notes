@@ -14,26 +14,15 @@ use yii\db\ActiveQuery;
  */
 class NoteQuery extends ActiveQuery
 {
-    public function forCurrentUser(): NoteQuery
-    {
-        return $this->andWhere(['user_id' => Yii::$app->user->getId()]);
-    }
-
-    /**
-     * {@inheritdoc}
-     * @return Note[]|array
-     */
     public function all($db = null): array
     {
+        $this->andWhere(['user_id' => Yii::$app->user->getId()]);
         return parent::all($db);
     }
 
-    /**
-     * {@inheritdoc}
-     * @return Note|array|null
-     */
     public function one($db = null): Note|array|null
     {
+        $this->andWhere(['user_id' => Yii::$app->user->getId()]);
         return parent::one($db);
     }
 }

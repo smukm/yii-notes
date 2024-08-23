@@ -24,7 +24,6 @@ class NoteService
     public function findNote(int $id): array|ActiveRecord|null|Note
     {
         if (($model = Note::find()
-                ->forCurrentUser()
                 ->where(['id' => $id])
                 ->one()) !== null) {
             return $model;
