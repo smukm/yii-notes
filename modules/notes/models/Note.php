@@ -106,7 +106,7 @@ class Note extends ActiveRecord
     {
         return $this->hasMany(Tag::class, ['id' => 'tag_id'])
             ->viaTable(Taggable::tableName(), ['taggable_id' => 'id'])
-            ->orderBy(['title' => SORT_ASC]);
+            ->orderBy(['tags.title' => SORT_ASC]);
     }
 
     /**
