@@ -58,7 +58,7 @@ class NoteService
         $note = $this->findNote($note_id);
         $note->title = $noteForm->title;
         $note->content = $noteForm->content;
-        $note->updated_at = date('Y-m-d H:i:s'); //@todo before save
+        $note->updated_at = date('Y-m-d H:i:s');
 
         $note->tagValues = $noteForm->tags;
 
