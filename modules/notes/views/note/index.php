@@ -2,7 +2,9 @@
 
 declare(strict_types = 1);
 
+use kartik\select2\Select2;
 use modules\notes\models\Note;
+use modules\notes\models\Tag;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -36,17 +38,36 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'title',
             'content:ntext',
-            'created_at',
             [
-              'header' => Yii::t('notes', 'Tags'),
-              'value' => static function ($data) {
-                  $ret = [];
-                  foreach ($data->tags as $tag) {
-                      $ret[] = $tag->title;
-                  }
+                'attribute' => 'tag',
+                'filter' => Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'tag',
+                    'data' => Tag::getList(),
+                    'options' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Выберите тег',
+                        'encode' => false
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                        'selectOnClose' => true,
+                    ]
+                ]),
 
-                  return implode(' ', $ret);
-              }
+                'header' => Yii::t('notes', 'Tags'),
+                'value' => static function ($data) {
+                    $ret = [];
+                    foreach ($data->tags as $tag) {
+                        $ret[] = $tag->title;
+                    }
+
+                    return implode(' ', $ret);
+                }
+            ],
+            [
+                'attribute' => 'created_at',
+                'filter' => false,
             ],
             [
                 'class' => ActionColumn::class,
@@ -55,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         $action = 'edit';
                     }
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

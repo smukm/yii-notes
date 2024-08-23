@@ -12,6 +12,8 @@ use yii\data\ActiveDataProvider;
  */
 class NoteSearch extends Note
 {
+    // field for search by tags
+    public string $tag = '';
     /**
      * {@inheritdoc}
      */
@@ -19,7 +21,8 @@ class NoteSearch extends Note
     {
         return [
             [['id', 'user_id'], 'integer'],
-            [['title', 'content', 'created_at', 'updated_at'], 'safe'],
+            [['title', 'content', 'created_at', 'updated_at'], 'string'],
+            [['tag'], 'string'],
         ];
     }
 
@@ -67,6 +70,11 @@ class NoteSearch extends Note
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'content', $this->content]);
+
+        if(!empty($this->tag)) {
+            $query->joinWith('tags');
+            $query->where(['tags.title' => $this->tag]);
+        }
 
         return $dataProvider;
     }
