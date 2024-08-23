@@ -35,7 +35,17 @@ YiiAsset::register($this);
             'id',
             'title',
             'content:ntext',
-            'user_id',
+            [
+                'attribute' => 'tags',
+                'label' => Yii::t('notes', 'Tags'),
+                'value' => function () use ($model) {
+                    $ret = [];
+                    foreach($model->tags as $tag) {
+                        $ret[] = $tag->title;
+                    }
+                    return implode(', ', $ret);
+                }
+            ],
             'created_at',
             'updated_at',
         ],
