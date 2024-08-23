@@ -8,7 +8,7 @@ use yii\helpers\Html;
  * @var NoteForm $noteForm
  */
 
-$this->title = Yii::t('notes', 'Create Note');
+$this->title = Yii::t('notes', 'New Note');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('notes', 'Notes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
