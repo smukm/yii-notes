@@ -48,22 +48,6 @@ class Note extends ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules(): array
-    {
-        return [
-            [['title', 'content', 'user_id', 'created_at', 'updated_at'], 'required'],
-            [['content'], 'string'],
-            [['user_id'], 'integer'],
-            [['created_at', 'updated_at'], 'string'],
-            [['title'], 'string', 'max' => 255],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
-            [['tagValues',], 'safe'],
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels(): array
     {
         return [
