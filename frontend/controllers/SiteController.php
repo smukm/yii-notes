@@ -40,7 +40,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout', 'signup'],
+                'only' => ['logout', 'signup', 'api-doc', 'refresh-token'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
@@ -48,7 +48,7 @@ class SiteController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'api-doc', 'refresh-token'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -58,6 +58,7 @@ class SiteController extends Controller
                 'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
+                    'refresh-token' => ['post'],
                 ],
             ],
         ];
@@ -115,6 +116,19 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionApiDoc()
+    {
+        return $this->render('api');
+    }
+
+    public function actionRefreshToken()
+    {
+        $user = Yii::$app->user->identity;
+        $user->setAccessToken(Yii::$app->getSecurity()->generateRandomString(40));
+        $user->save();
+        return $this->redirect(['api-doc']);
     }
 
     /**
