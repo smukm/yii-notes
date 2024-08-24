@@ -97,6 +97,11 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->access_token;
     }
 
+    public function setAccessToken(string $access_token)
+    {
+        $this->access_token = $access_token;
+    }
+
     /**
      * Finds user by username
      *
