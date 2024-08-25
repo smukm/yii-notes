@@ -100,10 +100,11 @@ class NotesController extends BaseController
         }
     }
 
-    public function actionDelete(int $id)
+    public function actionDelete(int $id): Response|array
     {
         try {
             $this->noteService->deleteNote($id);
+            return [];
         } catch (Throwable $ex) {
             return $this->handleError($ex);
         }
