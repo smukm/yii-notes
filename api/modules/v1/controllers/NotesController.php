@@ -65,6 +65,7 @@ class NotesController extends BaseController
             $noteForm = new NoteForm();
             $noteForm->title = $body['title'] ?? '';
             $noteForm->content = $body['content'] ?? '';
+            $noteForm->tags = $body['tags'] ?? [];
 
             if(!$noteForm->validate()) {
                 throw new NotValidException($noteForm->getFirstErr());
@@ -87,6 +88,7 @@ class NotesController extends BaseController
             $noteForm = new NoteForm();
             $noteForm->title = $body['title'] ?? '';
             $noteForm->content = $body['content'] ?? '';
+            $noteForm->tags = $body['tags'] ?? [];
 
             if(!$noteForm->validate()) {
                 throw new NotValidException($noteForm->getFirstErr());
