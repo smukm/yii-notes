@@ -38,7 +38,7 @@ class NoteForm extends Model
                 'targetClass' => User::class,
                 'targetAttribute' => ['user_id' => 'id']
             ],
-            [['tags'], 'safe'],
+            [['tags'], 'tagsValidator'],
         ];
     }
 
@@ -49,6 +49,18 @@ class NoteForm extends Model
             'content' => Yii::t('notes', 'Content'),
             'tags' => Yii::t('notes', 'Tags'),
         ];
+    }
+
+    public function tagsValidator(string $attrib): void
+    {
+        $tags = $this->$attrib;
+        if(is_array($tags)) {
+            foreach ($tags as $tag) {
+                if(empty($tag)) {
+                    $this->addError($attrib, 'Invalid tag');
+                }
+            }
+        }
     }
 
     public function getFirstErr(): string
