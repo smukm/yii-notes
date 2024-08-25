@@ -50,4 +50,11 @@ class NoteForm extends Model
             'tags' => Yii::t('notes', 'Tags'),
         ];
     }
+
+    public function getFirstErr(): string
+    {
+        $errors = $this->getFirstErrors();
+        $key = array_key_first($errors);
+        return (!is_null($key)) ? $errors[$key] : '';
+    }
 }
