@@ -27,8 +27,9 @@ $this->title = 'API';
                 <code>POST: <?=Yii::$app->params['API_HOST']?>/v1/notes</code>
                 <pre>
 Body json: {
-                "title": "The title",
-                "content": "Content of the note"
+                "required|title": "The title",
+                "required|content": "Content of the note",
+                "tags":["tag1","tag2"]
             }
         </pre>
             </div>
@@ -38,10 +39,12 @@ Body json: {
                 <code>PUT: <?=Yii::$app->params['API_HOST']?>/v1/notes/{note_id}</code>
                 <pre>
 Body json: {
-                "title": "New title",
-                "content": "New content of the note"
+                "required|title": "New title",
+                "required|content": "New content of the note",
+                "tags":["tag1","tag2"]
             }
-        </pre>
+               </pre>
+
             </div>
 
             <div class="row mb-3">
