@@ -11,12 +11,8 @@ use api\modules\v1\models\ApiUserIdentity;
 
 class Module extends \yii\base\Module
 {
-    /** @var string */
     public $controllerNamespace = 'api\modules\v1\controllers';
 
-    /**
-     * @inheritdoc
-     */
     public function init(): void
     {
         parent::init();
@@ -26,9 +22,6 @@ class Module extends \yii\base\Module
         Yii::$app->user->loginUrl = null;
     }
 
-    /**
-     * @return array
-     */
     public function behaviors(): array
     {
         $behaviors = parent::behaviors();
