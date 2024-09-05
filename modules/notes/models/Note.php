@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace modules\notes\models;
 
+use common\behaviors\CacheInvalidateBehavior;
 use common\models\User;
 use creocoder\taggable\TaggableBehavior;
 use Yii;
@@ -69,6 +70,20 @@ class Note extends ActiveRecord
                 'tagRelation' => 'tags',
                  'tagValueAttribute' => 'title',
                 'tagFrequencyAttribute' => false,
+            ],
+            'invalidateCache' => [
+                'class' => CacheInvalidateBehavior::class,
+                'tags' => [
+                    [
+                        self::tableName(),
+                        function ($model) {
+                            return $model->id;
+                        }
+                    ],
+                    [
+                        self::tableName()
+                    ]
+                ],
             ],
         ];
     }

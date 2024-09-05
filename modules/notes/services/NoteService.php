@@ -10,6 +10,7 @@ use modules\notes\models\Note;
 use Throwable;
 use Yii;
 use yii\base\InvalidConfigException;
+use yii\caching\TagDependency;
 use yii\db\ActiveRecord;
 use yii\db\Exception;
 use yii\db\StaleObjectException;
@@ -24,6 +25,9 @@ class NoteService
     public function findNote(int $id): array|ActiveRecord|null|Note
     {
         if (($model = Note::find()
+                ->cache(Yii::$app->params['cacheDuration'], new TagDependency([
+                    'tags' => [Note::tableName(), $id]
+                ]))
                 ->where(['id' => $id])
                 ->one()) !== null) {
             return $model;

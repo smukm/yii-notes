@@ -4,7 +4,9 @@ declare(strict_types = 1);
 
 namespace modules\notes\models;
 
+use Yii;
 use yii\base\Model;
+use yii\caching\TagDependency;
 use yii\data\ActiveDataProvider;
 
 /**
@@ -44,7 +46,12 @@ class NoteSearch extends Note
      */
     public function search(array $params): ActiveDataProvider
     {
-        $query = Note::find()->with('tags');
+        $query = Note::find()
+            ->cache(
+                Yii::$app->params['cacheDuration'], new TagDependency([
+                'tags' => Note::tableName()
+            ]))
+            ->with('tags');
 
         // add conditions that should always apply here
 
